@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Merci - AmbuConnect</title>
+  <link href="./style.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+<body class="bg-gray-50">
+  <div class="min-h-screen flex flex-col">
+    <!-- Header minimal -->
+    <header class="bg-white shadow-sm">
+      <nav class="container mx-auto px-6 py-4">
+        <div class="text-2xl font-bold text-blue-600">AmbuConnect</div>
+      </nav>
+    </header>
+
+    <!-- Contenu principal -->
+    <main class="flex-1 container mx-auto px-6 py-12">
+      <div class="max-w-2xl mx-auto text-center" data-aos="fade-up">
+        <div class="mb-8">
+          <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+            </svg>
+          </div>
+          <h1 class="text-3xl md:text-4xl font-bold mb-4">Merci pour votre intérêt !</h1>
+          <p class="text-xl text-gray-600">Votre demande a bien été enregistrée.</p>
+        </div>
+
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+          <h2 class="text-xl font-semibold mb-6">Prochaines étapes</h2>
+          <div class="space-y-6">
+            <div class="flex items-start">
+              <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                <span class="text-blue-600 font-semibold">1</span>
+              </div>
+              <div class="text-left">
+                <h3 class="font-semibold mb-1">Confirmation par email</h3>
+                <p class="text-gray-600">Vous allez recevoir un email de confirmation dans les prochaines minutes</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                <span class="text-blue-600 font-semibold">2</span>
+              </div>
+              <div class="text-left">
+                <h3 class="font-semibold mb-1">Prise de contact</h3>
+                <p class="text-gray-600">Un expert AmbuConnect vous contactera sous 24h pour planifier votre démo</p>
+              </div>
+            </div>
+            <div class="flex items-start">
+              <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                <span class="text-blue-600 font-semibold">3</span>
+              </div>
+              <div class="text-left">
+                <h3 class="font-semibold mb-1">Démo personnalisée</h3>
+                <p class="text-gray-600">Découvrez comment AmbuConnect peut optimiser votre gestion</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <h3 class="font-semibold">En attendant, découvrez nos ressources</h3>
+          <div class="grid md:grid-cols-2 gap-4">
+            <a href="#" class="block p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+              <h4 class="font-semibold mb-2">Guide d'optimisation</h4>
+              <p class="text-sm text-gray-600">10 conseils pour optimiser votre flotte</p>
+            </a>
+            <a href="#" class="block p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow">
+              <h4 class="font-semibold mb-2">Études de cas</h4>
+              <p class="text-sm text-gray-600">Découvrez les succès de nos clients</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Footer minimal -->
+    <footer class="bg-gray-900 text-white py-8">
+      <div class="container mx-auto px-6 text-center">
+        <p>&copy; 2024 AmbuConnect. Tous droits réservés.</p>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
+</html> 
