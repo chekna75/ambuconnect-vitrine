@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #2563eb;
+  --secondary: #1e40af;
+}
+
+body {
+  @apply antialiased text-gray-800;
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+}
+
+.feature-card {
+  @apply bg-white p-6 rounded-xl shadow-lg transition-all duration-500;
+}
+
+.feature-card:hover {
+  @apply -translate-y-2 shadow-2xl;
+  transform: scale(1.02);
+}
+
+.btn-primary {
+  @apply bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:bg-blue-700 hover:shadow-lg hover:scale-105 active:scale-95;
+}
+
+.section {
+  @apply py-20;
+}
+
+/* Animations */
+.floating {
+  animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
+
+.pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .7; }
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Effet de survol pour les liens */
+.nav-link {
+  @apply relative overflow-hidden;
+}
+
+.nav-link::after {
+  content: '';
+  @apply absolute bottom-0 left-0 w-0 h-0.5 bg-blue-200 transition-all duration-300;
+}
+
+.nav-link:hover::after {
+  @apply w-full;
+}
+
+/* Section des images */
+.image-showcase {
+  @apply relative;
+}
+
+.main-image-container {
+  @apply relative mb-6 transform transition-all duration-500;
+}
+
+.main-image-container:hover {
+  @apply -translate-y-2;
+  transform: scale(1.02);
+}
+
+.main-image {
+  @apply rounded-xl shadow-2xl w-full;
+}
+
+.dashboard-label {
+  @apply absolute top-4 left-4 z-10 bg-white/10 backdrop-blur-md rounded-lg px-4 py-2 text-sm font-medium transform transition-all duration-300;
+}
+
+.main-image-container:hover .dashboard-label {
+  @apply scale-110 bg-white/20;
+}
+
+.secondary-images {
+  @apply grid grid-cols-2 gap-6;
+}
+
+.image-container {
+  @apply relative overflow-hidden rounded-xl transform transition-all duration-500;
+}
+
+.image-container img {
+  @apply w-full h-full object-cover shadow-lg transition-all duration-500;
+}
+
+.image-container:hover {
+  @apply -translate-y-2 shadow-xl;
+}
+
+.image-container:hover img {
+  @apply scale-110;
+  filter: brightness(1.1);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.image-container:nth-child(1) {
+  animation: float 6s ease-in-out infinite;
+}
+
+.image-container:nth-child(2) {
+  animation: float 6s ease-in-out infinite 1s;
+}
