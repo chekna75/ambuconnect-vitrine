@@ -1,6 +1,7 @@
 import './style.css'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import { initializeROICalculator } from './roi-calculator'
 
 // Configuration AOS avec plus d'effets
 AOS.init({
@@ -9,6 +10,9 @@ AOS.init({
   mirror: true,
   easing: 'ease-out-cubic'
 })
+
+// Initialisation du calculateur ROI
+initializeROICalculator()
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div class="min-h-screen">
