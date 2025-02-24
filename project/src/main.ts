@@ -2,6 +2,7 @@ import './style.css'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import { initializeROICalculator } from './roi-calculator'
+import { initializeContactForm } from './contact-form'
 
 // Configuration AOS avec plus d'effets
 AOS.init({
@@ -14,6 +15,9 @@ AOS.init({
 // Initialisation du calculateur ROI
 initializeROICalculator()
 
+// Initialisation du formulaire de contact
+initializeContactForm()
+
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
   <div class="min-h-screen">
     <!-- Hero Section -->
@@ -23,7 +27,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
         <div class="hidden md:flex space-x-8">
           <a href="#features" class="nav-link hover:text-blue-200 transition-colors">Fonctionnalités</a>
           <a href="#benefits" class="nav-link hover:text-blue-200 transition-colors">Avantages</a>
-          <a href="#contact" class="nav-link hover:text-blue-200 transition-colors">Contact</a>
+          <button data-contact-trigger class="nav-link hover:text-blue-200 transition-colors">Contact</button>
         </div>
       </nav>
       
@@ -283,12 +287,12 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
             <div class="bg-white p-6 rounded-lg shadow-lg" data-aos="fade-right">
               <h3 class="text-xl font-semibold mb-4">Démo gratuite</h3>
               <p class="mb-4">Découvrez toutes nos fonctionnalités en 30 minutes</p>
-              <button class="btn-primary w-full">Réserver ma démo</button>
+              <button data-contact-trigger class="btn-primary w-full">Réserver ma démo</button>
             </div>
             <div class="bg-white p-6 rounded-lg shadow-lg" data-aos="fade-left">
               <h3 class="text-xl font-semibold mb-4">Contact commercial</h3>
               <p class="mb-4">Questions sur nos offres ? Contactez-nous</p>
-              <button class="btn-secondary w-full">Nous contacter</button>
+              <button data-contact-trigger class="btn-secondary w-full">Nous contacter</button>
             </div>
           </div>
         </div>
@@ -299,8 +303,8 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <!-- Floating CTA -->
     <div class="fixed bottom-0 left-0 right-0 bg-white shadow-lg p-4 flex justify-center items-center space-x-4 md:space-x-8">
       <p class="text-lg font-semibold">Prêt à optimiser votre gestion ?</p>
-      <button class="btn-primary">Essai gratuit</button>
-      <button class="btn-secondary">Voir la démo</button>
+      <button data-contact-trigger class="btn-primary">Essai gratuit</button>
+      <button data-contact-trigger class="btn-secondary">Voir la démo</button>
     </div>
 
     <!-- Newsletter Popup -->
@@ -447,5 +451,194 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
       // Calcul initial
       calculateROI();
     </script>
+
+    <!-- Modal de contact -->
+    <div id="contact-modal" class="contact-modal hidden">
+      <div class="contact-modal-content">
+        <div class="contact-form-container overflow-hidden">
+          <button id="close-modal" class="modal-close-button">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          
+          <div class="p-8">
+            <div class="text-center mb-8">
+              <h2 class="text-3xl font-bold text-gray-800 mb-2">Contactez-nous</h2>
+              <p class="text-gray-600">Nous vous répondrons dans les plus brefs délais</p>
+            </div>
+            
+            <form id="contact-form" class="space-y-6">
+              <div class="grid md:grid-cols-2 gap-6">
+                <!-- Informations personnelles -->
+                <div class="space-y-4">
+                  <div class="form-group group">
+                    <label for="nom" class="form-label">Nom</label>
+                    <input 
+                      type="text" 
+                      id="nom" 
+                      name="nom"
+                      required
+                      class="form-input"
+                      placeholder="Votre nom"
+                    >
+                  </div>
+
+                  <div class="form-group group">
+                    <label for="email" class="form-label">Email</label>
+                    <input 
+                      type="email" 
+                      id="email" 
+                      name="email"
+                      required
+                      class="form-input"
+                      placeholder="votre@email.com"
+                    >
+                  </div>
+
+                  <div class="form-group group">
+                    <label for="telephone" class="form-label">Téléphone</label>
+                    <input 
+                      type="tel" 
+                      id="telephone" 
+                      name="telephone"
+                      class="form-input"
+                      placeholder="06 XX XX XX XX"
+                    >
+                  </div>
+                </div>
+
+                <!-- Informations entreprise -->
+                <div class="space-y-4">
+                  <div class="form-group group">
+                    <label for="entreprise" class="form-label">Entreprise</label>
+                    <input 
+                      type="text" 
+                      id="entreprise" 
+                      name="entreprise"
+                      class="form-input"
+                      placeholder="Nom de votre entreprise"
+                    >
+                  </div>
+
+                  <div class="form-group group">
+                    <label for="nombreAmbulances" class="form-label">Nombre d'ambulances</label>
+                    <select 
+                      id="nombreAmbulances" 
+                      name="nombreAmbulances"
+                      class="form-select"
+                    >
+                      <option value="">Sélectionnez</option>
+                      <option value="1-5">1 à 5</option>
+                      <option value="6-10">6 à 10</option>
+                      <option value="11-20">11 à 20</option>
+                      <option value="21+">Plus de 20</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group group">
+                    <label for="sujet" class="form-label">Sujet</label>
+                    <select 
+                      id="sujet" 
+                      name="sujet"
+                      required
+                      class="form-select"
+                    >
+                      <option value="">Sélectionnez un sujet</option>
+                      <option value="demo">Demande de démonstration</option>
+                      <option value="devis">Demande de devis</option>
+                      <option value="information">Demande d'information</option>
+                      <option value="autre">Autre</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Message -->
+              <div class="form-group group">
+                <label for="message" class="form-label">Message</label>
+                <textarea 
+                  id="message" 
+                  name="message"
+                  rows="4"
+                  required
+                  minlength="10"
+                  class="form-textarea"
+                  placeholder="Comment pouvons-nous vous aider ?"
+                ></textarea>
+              </div>
+
+              <!-- RGPD -->
+              <div class="flex items-start space-x-3">
+                <div class="flex items-center h-6">
+                  <input
+                    id="rgpd"
+                    name="rgpd"
+                    type="checkbox"
+                    required
+                    class="form-checkbox"
+                  >
+                </div>
+                <div class="text-sm">
+                  <label for="rgpd" class="font-medium text-gray-700">J'accepte la politique de confidentialité</label>
+                  <p class="text-gray-500 mt-1">En soumettant ce formulaire, j'accepte que mes données soient utilisées pour me recontacter.</p>
+                </div>
+              </div>
+
+              <!-- Messages de retour -->
+              <div id="success-message" class="form-message success hidden">
+                <div class="flex">
+                  <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                  <div class="ml-3">
+                    <p class="text-sm font-medium text-green-800">
+                      Message envoyé avec succès ! Nous vous recontacterons dans les plus brefs délais.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div id="error-message" class="form-message error hidden">
+                <div class="flex">
+                  <div class="flex-shrink-0">
+                    <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                    </svg>
+                  </div>
+                  <div class="ml-3">
+                    <p class="text-sm font-medium text-red-800">
+                      Une erreur est survenue lors de l'envoi du message. Veuillez réessayer.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bouton de soumission -->
+              <div class="flex justify-center">
+                <button 
+                  type="submit"
+                  class="btn-primary group relative overflow-hidden"
+                >
+                  <span class="relative z-10">Envoyer le message</span>
+                  <div class="absolute inset-0 bg-blue-700 transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></div>
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 `
+
+// Attendre que le DOM soit complètement chargé avant d'initialiser
+window.addEventListener('DOMContentLoaded', () => {
+  // Initialisation du calculateur ROI
+  initializeROICalculator();
+  
+  // Initialisation du formulaire de contact
+  initializeContactForm();
+});
